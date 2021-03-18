@@ -1,10 +1,22 @@
 enet = require 'enet'
+inspect = require 'libs.inspect'
 
-host = enet.host_create('*:6789')
+host = enet.host_create('*:3456')
+players = {}
+
+function sendMessageToAllPeers(sender, msg)
+  for i, p in pairs(peers) do
+    if not (sender == p) then
+      p:send(msg)
+    end
+  end
+end
 
 function processEvent(event)
   if event.type == 'connect' then
     print('Connection from: ', event.peer)
+    peers[event.peer:index()] = event.peer
+    sendMessageToAllPeers(event.peer, 'joined')
   elseif event.type == 'receive' then
     print(event.data)
     event.peer:send('alright mate')

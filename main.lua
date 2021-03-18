@@ -4,10 +4,10 @@ inspect = require 'libs.inspect'
 serverThread = love.thread.newThread('server.lua')
 serverThread:start()
 
-local host = enet.host_create()
-local server = host:connect('localhost:6789')
-
 function love.load()
+  host = enet.host_create()
+  -- server = host:connect('192.168.1.95:3456')
+  server = host:connect('192.168.1.95:34567')
 end
 
 function love.update(dt)
@@ -23,10 +23,11 @@ end
 
 function processEvent(event)
   if event.type == 'connect' then
-    print('Client Connected')
-    server:send('hi')
+    server:send('register#' .. tostring(event.peer))
+    server:send('connect#192.168.1.95:3456')
   elseif event.type == 'receive' then
-    print(event.data)
+    -- once we get info back we connect to right thing
+    -- server = host:connect('192.168.1.95:3456')
   end
 end
 
