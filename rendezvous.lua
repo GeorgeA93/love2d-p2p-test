@@ -1,7 +1,7 @@
 enet = require 'enet'
 require 'libs.strong'
 
-host = enet.host_create('*:34567')
+host = enet.host_create('0.0.0.0:34567')
 
 peers = {}
 
