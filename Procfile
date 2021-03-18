@@ -1,1 +1,1 @@
-web: lua rendezvous.lua $PORT
+web: lua5.3 rendezvous.lua $PORT
