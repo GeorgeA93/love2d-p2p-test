@@ -1,1 +1,1 @@
-web: lua rendezvous.lua $PORT
+web: vendor/lua/bin/lua rendezvous.lua $PORT
