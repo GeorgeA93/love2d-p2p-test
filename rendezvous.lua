@@ -16,20 +16,21 @@ function processEvent(event)
   elseif event.type == 'receive' then
     local cmd, arg = getCmd(event.data)
     if cmd == 'register' then
-      local ipPort = arg:split(':')
-      local ip = ipPort[1]
-      peers[ip] = { private = arg, public = tostring(event.peer) }
-      print('Client Registered! private: ' .. peers[ip]['private'] .. ' public: ' .. peers[ip]['public'])
+      local nameAddress = arg:split(',')
+      local name = nameAddress[1]
+      peers[name] = { private = nameAddress[2], public = tostring(event.peer) }
+      print('Client Registered ' .. name .. '! private: ' .. peers[name]['private'] .. ' public: ' .. peers[name]['public'])
     elseif cmd == 'connect' then
       print('Connect request from ' .. tostring(event.peer) .. ' to ' .. arg)
 
-      local ipPort = arg:split(':')
-      local ip = ipPort[1]
-      local peer = peers[ip]
+      local peer = peers[arg]
 
       if not peer then
         print('Peer not registered!')
+        return
       end
+
+      event.peer:send('connection#' .. peer['public'])
     end
   end
 end

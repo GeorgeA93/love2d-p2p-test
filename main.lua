@@ -23,8 +23,9 @@ end
 
 function processEvent(event)
   if event.type == 'connect' then
-    server:send('register#' .. tostring(event.peer))
-    server:send('connect#192.168.1.95:3456')
+    -- server:send('register#' .. tostring(event.peer))
+    server:send('register#foo,192.168.1.95:5678')
+    -- server:send('connect#192.168.1.95:3456')
   elseif event.type == 'receive' then
     -- once we get info back we connect to right thing
     -- server = host:connect('192.168.1.95:3456')
