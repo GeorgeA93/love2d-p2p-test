@@ -1,1 +1,1 @@
-web: lua rendezvous.lua $PORT
+console: lua rendezvous.lua $PORT
