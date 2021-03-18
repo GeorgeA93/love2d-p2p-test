@@ -7,7 +7,7 @@ serverThread:start()
 function love.load()
   host = enet.host_create()
   -- server = host:connect('192.168.1.95:3456')
-  server = host:connect('vast-shelf-39527.herokuapp.com:34567')
+  server = host:connect('aqueous-temple-15857.herokuapp.com:34567')
 end
 
 function love.update(dt)
