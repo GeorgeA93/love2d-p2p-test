@@ -1,8 +1,8 @@
 enet = require 'enet'
 require 'libs.strong'
 
-print(os.getenv('PORT'))
-host = enet.host_create('0.0.0.0:34567')
+print('hi')
+host = enet.host_create('0.0.0.0:' .. os.getenv('PORT'))
 
 peers = {}
 
